@@ -1,18 +1,14 @@
 import { Injectable, PipeTransform, Pipe } from '@angular/core';
+import { ExpirationDateService } from './expiration-date.service'
 
 @Pipe({
   name: 'expDatePipe'
 })
 @Injectable()
 export class ExpirationDatePipe implements PipeTransform {
+  constructor(private _expirationDate: ExpirationDateService) { }
+
   transform(val: string, args: any[] = null): string {
-    val = val.replace(/\D/g, '');
-    if (val.length > 4) {
-      val = val.substr(0, 4);
-    }
-    if (val.length > 2) {
-      val = val.substr(0, 2) + '/' + val.substr(2);
-    }
-    return val;
+    return this._expirationDate.parseExpDate(val);
   }
 }
