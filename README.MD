@@ -22,20 +22,16 @@ and then from your Angular `AppModule`:
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { AppComponent } from './app.component';
-
 // Import your library
-import { SampleModule } from 'angular-cc-expiration-date';
+import { ExpirationDateModule } from 'angular-cc-expiration-date';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [],
   imports: [
     BrowserModule,
 
     // Specify your library as an import
-    LibraryModule
+    ExpirationDateModule
   ],
   providers: [],
   bootstrap: [AppComponent]
@@ -47,10 +43,22 @@ Once your library is imported, you can use its components, directives and pipes 
 
 ```xml
 <!-- You can now use your library component in app.component.html -->
+<!-- Not yet implemented for angular-cc-expiration-date-->
 <h1>
   {{title}}
 </h1>
 <sampleComponent></sampleComponent>
+```
+
+
+```xml
+<!-- To use the exp-date directive which will format a text input into a date -->
+<input type="text" exp-date>
+```
+
+```xml
+<!-- To use the exp-date pipe which will format a text binded variable into a date -->
+<h1 [innerHtml]="someStringVariable | expDate"></h1>
 ```
 
 ## Development

@@ -404,7 +404,7 @@ import { ExpirationDateService } from &#x27;./expiration-date.service&#x27;
 export class ExpirationDateDirective {
 
   // THIS WILL BE FIRED IF SOMEONE CHANGES THE INPUT
-  @HostListener(&#x27;keyup&#x27;, [&#x27;$event&#x27;])
+  @HostListener(&#x27;input&#x27;, [&#x27;$event&#x27;])
   inputChanged(event) {
     if (event.target.value) {
       event.target.value &#x3D; this._expirationDate.formatExpirationDate(event.target.value);

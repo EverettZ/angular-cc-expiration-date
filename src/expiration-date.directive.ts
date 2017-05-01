@@ -6,7 +6,7 @@ import { ExpirationDateService } from './expiration-date.service'
 export class ExpirationDateDirective {
 
   // THIS WILL BE FIRED IF SOMEONE CHANGES THE INPUT
-  @HostListener('keyup', ['$event'])
+  @HostListener('input', ['$event'])
   inputChanged(event) {
     if (event.target.value) {
       event.target.value = this._expirationDate.formatExpirationDate(event.target.value);
