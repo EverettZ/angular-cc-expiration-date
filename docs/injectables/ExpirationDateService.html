@@ -408,19 +408,25 @@
 import { IExpirationDateFormatter } from &#x27;./i-expiration-date&#x27;;
 
 @Injectable()
-export class ExpirationDateService implements IExpirationDateFormatter{
+export class ExpirationDateService implements IExpirationDateFormatter {
 
-   currYear: string;
+  currYear: string;
 
   constructor() {
     this.currYear &#x3D; new Date().getFullYear().toString().substr(-2);
   }
 
   formatExpirationDate(val: string) {
+
     val &#x3D; val.replace(/\D/g, &#x27;&#x27;);
+
     if (val.length &gt; 4) {
       val &#x3D; val.substr(0, 4);
     }
+    if (val.length &#x3D;&#x3D; 2 &amp;&amp; parseInt(val) &gt; 12) {
+      val &#x3D; &#x27;12&#x27;;
+    }
+
     let month &#x3D; val.substr(0, 2) || val;
     let year &#x3D; val.substr(2, 2) || val.substr(2) || &#x27;&#x27;;
 
