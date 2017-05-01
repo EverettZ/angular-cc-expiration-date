@@ -9,7 +9,7 @@ export class ExpirationDateDirective {
   @HostListener('keyup', ['$event'])
   inputChanged(event) {
     if (event.target.value) {
-      event.target.value = this._expirationDate.parseExpDate(event.target.value);
+      event.target.value = this._expirationDate.formatExpirationDate(event.target.value);
     }
   }
 

@@ -1,15 +1,16 @@
 import { Injectable } from '@angular/core';
+import { IExpirationDateFormatter } from './i-expiration-date';
 
 @Injectable()
-export class ExpirationDateService {
+export class ExpirationDateService implements IExpirationDateFormatter{
 
-  private currYear;
+   currYear: string;
 
   constructor() {
     this.currYear = new Date().getFullYear().toString().substr(-2);
   }
 
-  parseExpDate(val: string) {
+  formatExpirationDate(val: string) {
     val = val.replace(/\D/g, '');
     if (val.length > 4) {
       val = val.substr(0, 4);

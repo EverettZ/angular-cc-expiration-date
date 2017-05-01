@@ -9,6 +9,6 @@ export class ExpirationDatePipe implements PipeTransform {
   constructor(private _expirationDate: ExpirationDateService) { }
 
   transform(val: string, args: any[] = null): string {
-    return this._expirationDate.parseExpDate(val);
+    return this._expirationDate.formatExpirationDate(val);
   }
 }
