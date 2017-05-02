@@ -405,17 +405,17 @@ export class ExpirationDateDirective {
 
   // THIS WILL BE FIRED IF SOMEONE CHANGES THE INPUT
   @HostListener(&#x27;keypress&#x27;, [&#x27;$event&#x27;])
-  inputChanged(event) {
+  inputChanged(event: any) {
     const digitOnly &#x3D; /[0-9]+/g;
     let inputChar &#x3D; event.key;
     let val: string &#x3D; event.target.value;
 
-    if (!digitOnly.test(inputChar) || val.length &gt; 5) {
-      // invalid character, prevent input
-      event.preventDefault()
+    if (digitOnly.test(inputChar) &amp;&amp; val.length + 1 &lt; 6) {
+      event.target.value &#x3D; this._expirationDate.inputExpirationDate(event);
     } else {
-      event.target.value &#x3D; this._expirationDate.formatExpirationDate(event.target.value);
+      event.preventDefault();
     }
+
   }
 
 

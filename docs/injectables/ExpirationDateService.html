@@ -348,6 +348,36 @@
                         <tbody>
                             <tr>
                                 <td class="col-md-4">
+                                    <b> inputExpirationDate</b>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">
+            <code>inputExpirationDate(event: any)</code>
+                                </td>
+                            </tr>
+            
+                                <tr>
+                                    <td class="col-md-4">
+                                        <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/expiration-date.service.ts:13</a></div>
+                                    </td>
+                                </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+            
+                                        <div class="io-description">
+                                            <b>Returns: </b>    <code>void</code>
+            
+                                        </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
                                     <b> formatExpirationDate</b>
                                 </td>
                             </tr>
@@ -359,7 +389,7 @@
             
                                 <tr>
                                     <td class="col-md-4">
-                                        <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/expiration-date.service.ts:13</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/expiration-date.service.ts:31</a></div>
                                     </td>
                                 </tr>
             
@@ -412,14 +442,30 @@ export class ExpirationDateService implements IExpirationDateFormatter {
 
   currYear: string;
 
-  constructor() {
+  constructor() { 
     this.currYear &#x3D; new Date().getFullYear().toString().substr(-2);
+  }
+// hi
+  inputExpirationDate(event: any) {
+    let val &#x3D; event.target.value || &#x27;&#x27;;
+    let result &#x3D; val;
+    let inputChar &#x3D; event.key;
+    let len &#x3D; val.length;
+
+    let month &#x3D; val.substr(0, 2) || val;
+    let year &#x3D; val.substr(2, 2) || val.substr(2) || &#x27;&#x27;;
+
+    if (len &#x3D;&#x3D; 0 &amp;&amp; parseInt(inputChar) &gt; 1) {
+      result &#x3D; &#x27;0&#x27;;
+    } else if (len &#x3D;&#x3D; 2) {
+      result &#x3D; result + &#x27;/&#x27;;
+    }
+    return result
+
   }
 
   formatExpirationDate(val: string) {
-
     val &#x3D; val.replace(/\D/g, &#x27;&#x27;);
-
     if (val.length &gt; 4) {
       val &#x3D; val.substr(0, 4);
     }
@@ -439,7 +485,7 @@ export class ExpirationDateService implements IExpirationDateFormatter {
     }
 
     val &#x3D; month + year;
-    if (val.length &gt; 2) {
+    if (val.length &gt; 1) {
       val &#x3D; val.substr(0, 2) + &#x27;/&#x27; + val.substr(2);
     }
 
