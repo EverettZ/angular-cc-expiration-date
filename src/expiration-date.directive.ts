@@ -12,7 +12,7 @@ export class ExpirationDateDirective {
     let inputChar = event.key;
     let val: string = event.target.value;
 
-    if (!digitOnly.test(inputChar) || val.length > 6) {
+    if (!digitOnly.test(inputChar) || val.length > 5) {
       // invalid character, prevent input
       event.preventDefault()
     } else {
