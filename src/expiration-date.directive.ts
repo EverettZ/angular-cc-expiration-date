@@ -6,12 +6,21 @@ import { ExpirationDateService } from './expiration-date.service'
 export class ExpirationDateDirective {
 
   // THIS WILL BE FIRED IF SOMEONE CHANGES THE INPUT
-  @HostListener('input', ['$event'])
+  @HostListener('keypress', ['$event'])
   inputChanged(event) {
-    if (event.target.value) {
+    const digitOnly = /[0-9]+/g;
+    let inputChar = event.key;
+    let val: string = event.target.value;
+
+    if (!digitOnly.test(inputChar) || val.length > 6) {
+      // invalid character, prevent input
+      event.preventDefault()
+    } else {
       event.target.value = this._expirationDate.formatExpirationDate(event.target.value);
     }
   }
+
+
 
   constructor(private el: ElementRef, private _expirationDate: ExpirationDateService) {
 

@@ -348,7 +348,7 @@
                             </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/expiration-date.directive.ts:14</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/expiration-date.directive.ts:21</a></div>
                                     </td>
                                 </tr>
             
@@ -404,12 +404,21 @@ import { ExpirationDateService } from &#x27;./expiration-date.service&#x27;
 export class ExpirationDateDirective {
 
   // THIS WILL BE FIRED IF SOMEONE CHANGES THE INPUT
-  @HostListener(&#x27;input&#x27;, [&#x27;$event&#x27;])
+  @HostListener(&#x27;keypress&#x27;, [&#x27;$event&#x27;])
   inputChanged(event) {
-    if (event.target.value) {
+    const digitOnly &#x3D; /[0-9]+/g;
+    let inputChar &#x3D; event.key;
+    let val: string &#x3D; event.target.value;
+
+    if (!digitOnly.test(inputChar) || val.length &gt; 6) {
+      // invalid character, prevent input
+      event.preventDefault()
+    } else {
       event.target.value &#x3D; this._expirationDate.formatExpirationDate(event.target.value);
     }
   }
+
+
 
   constructor(private el: ElementRef, private _expirationDate: ExpirationDateService) {
 
