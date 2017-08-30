@@ -42,18 +42,13 @@ export class AppModule { }
 Once your library is imported, you can use its components, directives and pipes in your Angular application:
 
 ```xml
-<!-- You can now use your library component in app.component.html -->
-<!-- Not yet implemented for angular-cc-expiration-date-->
-<h1>
-  {{title}}
-</h1>
-<sampleComponent></sampleComponent>
+
 ```
 
 
 ```xml
 <!-- To use the exp-date directive which will format a text input into a date -->
-<input type="text" exp-date>
+<input type="text" expDate>
 ```
 
 ```xml

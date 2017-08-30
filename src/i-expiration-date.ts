@@ -1,5 +1,8 @@
 export interface IExpirationDateFormatter {
-    currYear: string;
-    formatExpirationDate(val: string);
-    inputExpirationDate(event);
+    hasTextSelected(target): boolean;
+    restrictExpiry(key, target);
+    replaceFullWidthChars(str);
+    formatExpiry(expiry);
+    restrictNumeric(e): boolean;
+    safeVal(value, target);
 }
